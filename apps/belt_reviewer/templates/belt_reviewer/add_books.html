@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Add Book and Review</title>
+    </head>
+    <body>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+        <h2>Add a New Book Title and Review</h2>
+        <header>
+            <a href="/books">Home</a>
+            <a href="/logout">Logout</a>
+        </header>
+        <form action="/add" method="POST">
+            {% csrf_token %}
+            <h3>Book Title: <input type="text" name="title"></h3>
+            <h3>Author</h3>
+            <ul>
+                <li><p>Choose from the list:<select name="author">
+                    <option value="Steven King">Steven King</option>
+                    <option value="J.K. Rowling">J.K. Rowling</option>
+                    <option value="Adam Mitzner">Adam Mitzner</option>
+                    <option value="Melinda Leigh">Melinda Leigh</option>
+                    <option value="David Baldacci">David Baldacci</option>
+                </select></p></li>
+                <li><p>Or add a new author <input type="text" name="new_author"></p></li>
+            </ul>
+            <h3>Review: <textarea name="review" rows="8" cols="80"></textarea></h3>
+            <h3>Rating <select name="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select></h3>
+            <input type="submit" value="Add Book and Review">
+        </form>
+    </body>
+</html>
